@@ -64,7 +64,7 @@ FromLocaleString.prototype._cleanNumber = function(txt) {
   return clean;
 };
 
-FromLocaleString.prototype.number = function(txt) {
+FromLocaleString.prototype.Number = function(txt) {
   "use strict";
 
   var clean = this._cleanNumber(txt);
