@@ -1,0 +1,17 @@
+{
+  "name": "fromlocalestring",
+  "version": "1.0.0",
+  "description": "Why is there no fromLocaleString in JavaScript?",
+  "main": "fromlocalestring.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NeyberTech/fromlocalestring.git"
+  },
+  "keywords": [
+    "fromLocaleString"
+  ],
+  "author": "HarryPehkonen"
+}
