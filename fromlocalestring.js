@@ -50,7 +50,12 @@ function FromLocaleString(/* localeData */) {
 FromLocaleString.prototype._cleanNumber = function(txt) {
   "use strict";
 
-  var clean = txt;
+
+  if (isNaN(txt)) {
+    return txt;
+  }
+
+  var clean = `${txt}`;
 
   // remove thousands-separators
   if (this.separators.thousandsSeparator && this.separators.thousandsSeparator != this.separators.parseFloatThousandsSeparator) {
