@@ -27,6 +27,14 @@ function FromLocaleString(/* localeData */) {
 
     // number of decimal places
     var decimalPlaces = txt.length - localDecimalSepIndex2 - 1;
+    console.warn({
+      txt,
+      thousandsSeparator: thousandsSeparator,
+      decimalSeparator: decimalSeparator,
+      parseFloatDecimalSeparator: '.',
+      parseFloatThousandsSeparator: '',
+      decimalPlaces: decimalPlaces
+    })
 
     return {
       thousandsSeparator: thousandsSeparator,
@@ -45,11 +53,13 @@ FromLocaleString.prototype._cleanNumber = function(txt) {
   var clean = txt;
 
   // remove thousands-separators
-  while (clean.indexOf(this.separators.thousandsSeparator) != -1) {
-    clean = clean.replace(
-      this.separators.thousandsSeparator,
-      this.separators.parseFloatThousandsSeparator
-    );
+  if (this.separators.thousandsSeparator && this.separators.thousandsSeparator != this.separators.parseFloatThousandsSeparator) {
+    while (clean.indexOf(this.separators.thousandsSeparator) != -1) {
+      clean = clean.replace(
+        this.separators.thousandsSeparator,
+        this.separators.parseFloatThousandsSeparator
+      );
+    }
   }
 
   // convert decimal-separator to one that
