@@ -27,15 +27,7 @@ function FromLocaleString(/* localeData */) {
 
     // number of decimal places
     var decimalPlaces = txt.length - localDecimalSepIndex2 - 1;
-    console.warn({
-      txt,
-      thousandsSeparator: thousandsSeparator,
-      decimalSeparator: decimalSeparator,
-      parseFloatDecimalSeparator: '.',
-      parseFloatThousandsSeparator: '',
-      decimalPlaces: decimalPlaces
-    })
-
+    
     return {
       thousandsSeparator: thousandsSeparator,
       decimalSeparator: decimalSeparator,
