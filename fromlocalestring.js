@@ -27,7 +27,7 @@ function FromLocaleString(/* localeData */) {
 
     // number of decimal places
     var decimalPlaces = txt.length - localDecimalSepIndex2 - 1;
-    
+
     return {
       thousandsSeparator: thousandsSeparator,
       decimalSeparator: decimalSeparator,
@@ -42,10 +42,9 @@ function FromLocaleString(/* localeData */) {
 FromLocaleString.prototype._cleanNumber = function(txt) {
   "use strict";
 
-
-  if (isNaN(txt)) {
-    return txt;
-  }
+  // if (isNaN(txt)) {
+  //   return txt;
+  // }
 
   var clean = `${txt}`;
 
