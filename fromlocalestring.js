@@ -67,6 +67,13 @@ FromLocaleString.prototype._cleanNumber = function(txt) {
     );
   }
 
+  // 兼容单一符号传入的情况
+  // 例如：本地小数点是 "." 的情况下，传入 txt=","，输出会是 clean=""。预期为 Number(",") == NaN，但实际值却是 Number("") == 0，与原生 Number 有出入。
+  // 实际会有更多不同情况要考虑，完整做法应该是只替换处在千分位正确位置上的千分位字符，目前先只处理单个符号的场景
+  if (clean === '') {
+    return txt;
+  }
+
   return clean;
 };
 
