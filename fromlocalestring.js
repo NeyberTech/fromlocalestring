@@ -48,15 +48,17 @@ FromLocaleString.prototype._cleanNumber = function(txt) {
 
   var clean = `${txt}`;
 
-  // remove thousands-separators
-  if (this.separators.thousandsSeparator && this.separators.thousandsSeparator != this.separators.parseFloatThousandsSeparator) {
-    while (clean.indexOf(this.separators.thousandsSeparator) != -1) {
-      clean = clean.replace(
-        this.separators.thousandsSeparator,
-        this.separators.parseFloatThousandsSeparator
-      );
-    }
-  }
+  //   The native Number() method not remove thousands-separators
+  //   
+  //   // remove thousands-separators
+  //   if (this.separators.thousandsSeparator && this.separators.thousandsSeparator != this.separators.parseFloatThousandsSeparator) {
+  //     while (clean.indexOf(this.separators.thousandsSeparator) != -1) {
+  //       clean = clean.replace(
+  //         this.separators.thousandsSeparator,
+  //         this.separators.parseFloatThousandsSeparator
+  //       );
+  //     }
+  //   }
 
   // convert decimal-separator to one that
   // parseFloat understands
