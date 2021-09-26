@@ -15,6 +15,9 @@ function FromLocaleString(/* localeData */) {
     // localize
     var txt = number.toLocaleString.apply(number, that.localeData);
 
+    // 兼容希伯来语、阿拉伯语
+    txt = FromLocaleString.prototype._parseVariant(txt);
+
     // find sentinels
     var localThousandsSepIndex1 = txt.indexOf('1');
     var localThousandsSepIndex2 = txt.indexOf('2');
@@ -39,6 +42,18 @@ function FromLocaleString(/* localeData */) {
   this.separators = getSeparators();
 };
 
+// 兼容希伯来语、阿拉伯语
+FromLocaleString.prototype._parseVariant = function(txt){
+  if (!txt) {
+    return txt;
+  }
+  return `${txt}`.replace(/[१२३४५६७८९०]/g, function (d) {
+    return d.charCodeAt(0) - 2406;
+  }).replace(/[١٢٣٤٥٦٧٨٩٠]/g, function (d) {
+    return d.charCodeAt(0) - 1632;
+  });
+}
+
 FromLocaleString.prototype._cleanNumber = function(txt) {
   "use strict";
 
@@ -48,8 +63,11 @@ FromLocaleString.prototype._cleanNumber = function(txt) {
 
   var clean = `${txt}`;
 
+  // 兼容希伯来语、阿拉伯语
+  clean = this._parseVariant(clean);
+
   //   The native Number() method not remove thousands-separators
-  //   
+  //
   //   // remove thousands-separators
   //   if (this.separators.thousandsSeparator && this.separators.thousandsSeparator != this.separators.parseFloatThousandsSeparator) {
   //     while (clean.indexOf(this.separators.thousandsSeparator) != -1) {
